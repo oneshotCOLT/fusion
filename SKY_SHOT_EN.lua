@@ -4645,78 +4645,234 @@ end
 
 --------------------------test-------------------------------
 
+-- Función para mostrar el menú
+
+-- Función magic1 que encapsula el código del menú
 function Magic1()
-    pwr = gg.choice({
+    -- Tabla con las opciones del menú
+    local opciones = {
         "Cape",
-		"↻Reset",
-        --"Pants",
-       -- "Hairstyle",
-        --"Mask",
-        --"Accessory",
-       -- "Prop",
-       -- "Others",
-        
-    }, nil, 'slot1')
-    if pwr == nil then
-        noselect()
-    else
-        if pwr == 1 then
-            pwr1 = gg.choice({
-                "Yeti Cape",
-                "Wings of AURORA",
-                "Cat Cape",
-                "Platinum Cape",
-                "Fish Cape",
-                "TGC Cape",
-                "Ghostbat Cape",
-                "Spider Cape",
-                "Christmas Cape",
-                "Snowflake Cape",
-                "Old Winter Feast Cape",
-                "White Bird Cape",
-                "Petal Cape",
-                "Fortune Cape",
-                "Sakura Cape",
-                "Wisteria Cape",
-                "Ocean Cape",
-                "Dream Season Cape",
-                "Rainbow Cape",
-                "Little Prince Scarf Cape",
-                "Little Prince Asteroid Jacket",
-                "Bloom Cape 2023",
-                "Alchemist Cape",
-                "Earth Cape",
-                "Light Scholar Cape",
-                "Giving In Cape",
-                "Postman Cape",
-                "Turtle Cape",
-                "Dead Leaves Cape"
-            }, nil, 'slot1')
+        "Pants",
+        "Hairstyle",
+        "Mask",
+        "Accessory",
+        "Prop",
+        "Others",
+        "Salir"
+    }
 
-            if pwr1 == nil then
+    -- Variable para guardar la opción seleccionada por el usuario
+    local opcion = 0
 
-            elseif pwr1 == 1 then
-                setsp1()
-                setvalue(mfdz + 0, 4, -940505450)
-            elseif pwr1 == 2 then
-                setsp3()
-                setvalue(mfdz + 96, 4, 1326646141)
-			elseif pwr1 == 3 then
-				ufrzvalue(mfdz + 96, 4, 0)
-                setvalue(mfdz + 96, 4, 0)
-                spn3 = " "
+    -- Ciclo para mostrar el menú y pedir la opción al usuario hasta que seleccione "Salir"
+    while opcion ~= #opciones do
+        -- Mostrar el menú y leer la opción seleccionada por el usuario
+        opcion = choice(opciones)
+
+        -- Realizar una acción dependiendo de la opción seleccionada
+        if opcion == 1 then
+			if opcion == 1 then
+				local cape = gg.choice({
+					"Yeti Cape",
+					"Wings of AURORA",
+					"Cat Cape",
+					"Platinum Cape",
+					"Fish Cape",
+					"TGC Cape",
+					"Ghostbat Cape",
+					"Spider Cape",
+					"Christmas Cape",
+					"Snowflake Cape",
+					"Old Winter Feast Cape",
+					"White Bird Cape",
+					"Petal Cape",
+					"Fortune Cape",
+					"Sakura Cape",
+					"Wisteria Cape",
+					"Ocean Cape",
+					"Dream Season Cape",
+					"Rainbow Cape",
+					"Little Prince Scarf Cape",
+					"Little Prince Asteroid Jacket",
+					"Bloom Cape 2023",
+					"Alchemist Cape",
+					"Earth Cape",
+					"Light Scholar Cape",
+					"Giving In Cape",
+					"Postman Cape",
+					"Turtle Cape",
+					"Dead Leaves Cape"
+				}, "Select a cape to equip", "Slot1/Cape")
+				if cape == nil then
+					print("Regresando al menú principal...")
+				elseif cape == #opciones-1 then
+					opcion = cape
+				else
+					print("Seleccionaste " .. cape)
+					if cape == 1 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -940505450)
+						spn1 = "Yeti cloak"
+						spark1()
+					elseif cape == 2 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 1326646141)
+						spn1 = "Aurora concert cloak"
+						spark1()
+					elseif cape == 3 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 583315364)
+						spn1 = "Cat cloak"
+						spark1()
+					elseif cape == 4 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 330655056)
+						spn1 = "Platinum cloak"
+						spark1()
+					elseif cape == 5 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 573237039)
+						spn1 = "Fish cloak"
+						spark1()
+					elseif cape == 6 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 540856305)
+						spn1 = "TGC cloak"
+						spark1()
+					elseif cape == 7 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -1407986309)
+						spn1 = "Ghostbat cloak"
+						spark1()
+					elseif cape == 8 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 633325982)
+						spn1 = "pwr1ider cloak"
+						spark1()
+					elseif cape == 9 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -1763984799)
+						spn1 = "Christmas cloak"
+						spark1()
+					elseif cape == 10 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -2118481318)
+						spn1 = "Snowflake cloak"
+						spark1()
+					elseif cape == 11 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 82088375)
+						spn1 = "Old Winter Feast cloak"
+						spark1()
+					elseif cape == 12 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 1725590052)
+						spn1 = "White Bird cloak"
+						spark1()
+					elseif cape == 13 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 1865271385)
+						spn1 = "Petal cloak"
+						spark1()
+					elseif cape == 14 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 221562364)
+						spn1 = "Fortune cloak"
+						spark1()
+					elseif cape == 15 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -630842234)
+						spn1 = "Sakura cloak"
+						spark1()
+					elseif cape == 16 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -1322784839)
+						spn1 = "Wisteria cloak"
+						spark1()
+					elseif cape == 17 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -438670659)
+						spn1 = "Ocean cloak"
+						spark1()
+					elseif cape == 18 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 1946019958)
+						spn1 = "Dream Season cloak"
+						spark1()
+					elseif cape == 19 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 869005924)
+						spn1 = "Rainbow cloak"
+						spark1()
+					elseif cape == 20 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -2052540323)
+						spn1 = "Little Prince Scarf cloak"
+						spark1()
+					elseif cape == 21 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -87150565)
+						spn1 = "Little Prince Asteroid Jacket cloak"
+						spark1()
+					elseif cape == 22 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 549258087)
+						spn1 = "Dob cloak"
+						spark1()
+					elseif cape == 23 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -383842131)
+						spark1()
+					elseif cape == 24 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 2079599063)
+						spark1()
+					elseif cape == 25 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 1375571404)
+						spark1()
+					elseif cape == 26 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 939730131)
+						spark1()
+					elseif cape == 27 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -308941587)
+						spark1()
+					elseif cape == 28 then
+						setsp1()
+						setvalue(mfdz + 0, 4, -700035318)
+						spark1()
+					elseif cape == 29 then
+						setsp1()
+						setvalue(mfdz + 0, 4, 769892976)
+						spark1()
+					end
+				end
+				
 			end
-
-		else
-			if pwr == 2 then
-				ufrzvalue(mfdz + 96, 4, 0)
-				setvalue(mfdz + 96, 4, 0)
-				spn3 = " "		
-			end
-		end
-
-	end
+			
+            
+        elseif opcion == 2 then
+            print("Seleccionaste Pants")
+        elseif opcion == 3 then
+            print("Seleccionaste Hairstyle")
+        elseif opcion == 4 then
+            print("Seleccionaste Mask")
+        elseif opcion == 5 then
+            print("Seleccionaste Accessory")
+        elseif opcion == 6 then
+            print("Seleccionaste Prop")
+        elseif opcion == 7 then
+            print("Seleccionaste Others")
+        elseif opcion == #opciones then
+            print("Saliendo del programa...")
+        else
+            print("Opción inválida")
+        end
+    end
 end
+
 
 function Magic()
 	pwr = gg.choice({
