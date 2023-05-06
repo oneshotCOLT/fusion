@@ -1,5 +1,3 @@
-ubicacionPersonaje = {}
-
 gg.alert("Welcome to Skyshot")
 
 scriptv = {process = {live = 'com.tgc.sky.android', canvas = "git.artdeell.skymodloader", beta = "com.tgc.sky.android.test.gold"}}
@@ -3429,30 +3427,37 @@ end
 -----------------------------------
 
 function find_adds()
-	gg.clearResults()
-	bootloader = gg.getRangesList('libBootloader.so')[1].start
-	player = getadd(bootloader + offsets.ptoplayer, gg.TYPE_QWORD)
-	player_r = player + offsets.pos_off + 0x20
-	nentity = getadd(bootloader + offsets.ptoentity, gg.TYPE_QWORD) + offsets.ptonentity
-	nentity_test = getadd(nentity, gg.TYPE_DWORD) == 1099746509
-	candles = find_candles()
-	plants = find_plants()
+    searchsui()
+    gg.clearResults()
+    bootloader = gg.getRangesList('libBootloader.so')[1].start
+    player = getadd(bootloader + offsets.ptoplayer, gg.TYPE_QWORD)
+    player_r = player + offsets.pos_off + 0x20
+    nentity = getadd(bootloader + offsets.ptoentity, gg.TYPE_QWORD) + offsets.ptonentity
+    nentity_test = getadd(nentity, gg.TYPE_DWORD) == 1099746509
+    candles = find_candles()
+    plants = find_plants()
 
-	if not(nentity_test) then
-		gg.searchNumber(1099746509, gg.TYPE_DWORD)
-		
-		if gg.getResultsCount() > 0 then
-			nentity = gg.getResults(1)[1].address
-			nentity_test = true
-		end
-	end
+    if not(nentity_test) then
+        gg.searchNumber(1099746509, gg.TYPE_DWORD)
+        
+        if gg.getResultsCount() > 0 then
+            nentity = gg.getResults(1)[1].address
+            nentity_test = true
+        end
+    end
 
-	if not(nentity_test) then
-		gg.toast("Error, some functions may not work.")
-	else
-		curmap = nentity + offsets.curmap_off
-	end
+    if not(nentity_test) then
+        gg.toast("Error, some functions may not work.")
+    else
+        curmap = nentity + offsets.curmap_off
+    end
 end
+
+function searchsui()
+    gg.setRanges(gg.REGION_OTHER)
+    gg.searchNumber("32,481,138,503,150,965", gg.TYPE_QWORD, false, gg.SIGN_EQUAL, 0, -1, 1)
+end
+
 
 function find_pos()
 	local coords = {
@@ -3693,62 +3698,6 @@ function set_game_speed(speed)
 end
 
 i = 0
-
-function capespam()
-   gg.setVisible(false)
-   while true do
-      pmagic(2, -1244390069, 1)
-      gg.sleep(500)
-      pmagic(2, -700035318, 1)
-      gg.sleep(500)
-      pmagic(2, 573237039, 1)
-      gg.sleep(500)
-      pmagic(2, 1762827508, 2)
-      gg.sleep(500)
-      pmagic(2, 769892976, 1)
-      gg.sleep(500)
-      pmagic(2, 330655056, 1)
-      gg.sleep(500)
-      pmagic(2, 1402240423, 1)
-      gg.sleep(500)
-      pmagic(2, 2207305370, 1)
-      gg.sleep(500)
-      pmagic(2, -195929339, 1)
-      gg.sleep(500)
-      pmagic(2, -1822337532, 1)
-      gg.sleep(500)
-      pmagic(2, -308941587, 1)
-      gg.sleep(500)
-      pmagic(2, 329684861, 1)
-      gg.sleep(500)
-      pmagic(2, 162066154, 1)
-      gg.sleep(500)
-      pmagic(2, -445538750, 1)
-      gg.sleep(500)
-      pmagic(2, 1375571404, 1)
-      gg.sleep(500)
-      pmagic(2, -6043825, 1)
-      gg.sleep(500)
-      pmagic(2, -1623262339, 1)
-      gg.sleep(500)
-      pmagic(2, 1306675982, 1)
-      gg.sleep(500)
-      pmagic(2, -784831205, 1)
-      gg.sleep(500)
-      pmagic(2, 930203946, 1)
-      gg.sleep(500)
-      pmagic(2, 625581156, 1)
-      gg.sleep(500)
-      pmagic(2, 540856305, 1)
-      gg.sleep(500)
-      pmagic(2, 2079599063, 1)
-      gg.sleep(500)
-      i = i + 1
-      if i == 1 then
-         break
-      end
-   end
-end
 
 function change_map(mp)
 	-- AHHAHHAHA I like this method moree
@@ -4504,40 +4453,34 @@ function UnlockSeason()
 end
 
 function rapidfarm()
-    -- Activar el set_autoburn
-    set_autoburn(true)
-
-    local cords, bool = getCords()
+	local cords, bool = getCords();
     if bool then
         for i, v in ipairs(cords) do
-            if gg.isVisible(true) then
-                break
-            end
+			if gg.isVisible(true) then
+				break;
+			end
             gg.setValues({
-                {
-                    address = coords.x,
-                    flags = gg.TYPE_FLOAT,
-                    value = v[1],
-                },
-                {
-                    address = coords.y,
-                    flags = gg.TYPE_FLOAT,
-                    value = v[2],
-                },
-                {
-                    address = coords.z,
-                    flags = gg.TYPE_FLOAT,
-                    value = v[3],
-                },
-            })
-            gg.sleep(700)
+            {
+                address = coords.x,
+                flags = gg.TYPE_FLOAT,
+                value = v[1],
+            },
+            {
+                address = coords.y,
+                flags = gg.TYPE_FLOAT,
+                value = v[2],
+            },
+            {
+                address = coords.z,
+                flags = gg.TYPE_FLOAT,
+                value = v[3],
+            },
+        });
+        gg.sleep(700);
         end
     else
-        gg.toast("There are no routes here at the moment")
+        return gg.toast("There are no routes here at the moment");
     end
-
-    -- Desactivar el set_autoburn
-    set_autoburn(false)
 end
 
 function slowfarm()
@@ -4844,26 +4787,27 @@ function supershout()
 end
 
 function node()
-    if node == on then
-	 node = off
-	  gg.setRanges(gg.REGION_CODE_APP)
-	  gg.searchNumber("h 20 00 80 52 FC 03 1F 2A")
-	  gg.getResultsCount()
-	  gg.getResults(100)
-	  gg.editAll("h 68 00 00 34 FC 03 1F 2A", gg.TYPE_BYTE)
-	  gg.clearResults()
-      gg.toast("🤼 off")
-    else
-	 node = on
-	  gg.setRanges(gg.REGION_CODE_APP)
-	  gg.searchNumber("h 68 00 00 34 FC 03 1F 2A")
-	  gg.getResultsCount()
-	  gg.getResults(50)
-	  gg.editAll("h 20 00 80 52 FC 03 1F 2A", gg.TYPE_BYTE)
-	  gg.clearResults()
-	  gg.toast("🤼 on")
-    end
+	if node == on then
+	    node = off
+        gg.setRanges(gg.REGION_CODE_APP)
+	    gg.searchNumber("h 20 00 80 52 FC 03 1F 2A")
+	    gg.getResultsCount()
+	    gg.getResults(100)
+	    gg.editAll("h 68 00 00 34 FC 03 1F 2A", gg.TYPE_BYTE)
+	    gg.clearResults()
+		gg.toast("🤼 off")
+	else
+		node = on
+		gg.setRanges(gg.REGION_CODE_APP)
+		gg.searchNumber("h 68 00 00 34 FC 03 1F 2A")
+		gg.getResultsCount()
+		gg.getResults(50)
+		gg.editAll("h 20 00 80 52 FC 03 1F 2A", gg.TYPE_BYTE)
+		gg.clearResults()
+		gg.toast("🤼 on")
+	end
 end
+
 
 function UnlockSeason()
 	gg.setRanges(gg.REGION_C_ALLOC)
@@ -5587,10 +5531,7 @@ so = gg.getRangesList("libBootloader.so")[1].start
 --gg.setVisible(so + qh)
 gg.setRanges(gg.REGION_C_ALLOC)
 gg.searchNumber("32,481,138,503,150,965", gg.TYPE_QWORD)
-if gg.getResultsCount() == 0 then
-  gg.setRanges(gg.REGION_OTHER)
-  gg.searchNumber("32,481,138,503,150,965", gg.TYPE_QWORD, 8.89715548E-21, gg.SIGN_EQUAL, 0, -1, 1)
-end
+
 pl = gg.getResults(1)
 addr = pl[1].address
 sh = addr + 407040
@@ -6585,34 +6526,6 @@ function lolol()
 	gg.alert( " in repair :( ")
 end
 
-
-
-function guardarUbicacion(ubicacion, redis)
-	redis:hset("ubicacion_personaje", "x", ubicacion.x)
-	redis:hset("ubicacion_personaje", "y", ubicacion.y)
-	redis:hset("ubicacion_personaje", "z", ubicacion.z)
-end
-  
-function cargarUbicacion(redis)
-	local x = redis:hget("ubicacion_personaje", "x")
-	local y = redis:hget("ubicacion_personaje", "y")
-	local z = redis:hget("ubicacion_personaje", "z")
-  
-	return {x = x, y = y, z = z}
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
 gx.vars.settings = {
 	wdistance = settings.wdistance,
 	w = 0
@@ -6641,8 +6554,6 @@ gx.add_menu({
 	title = "world menu: ",
 	name = "worldmenu",
 	menu = {
-		{"[🔢] Save location", {guardarUbicacion}},
-		{"[🔢] Load location", {cargarUbicacion}},
 		{"[🌬️] Remove Wind Wall", {RemoveWind}},
 		{"[⛔️] Remove Barrier", {RemoveBarrier}},
 		{"[☁️] Remove Clouds ", {gx.editor.switch, {tostring(clouds_results[1].address).."a 1D | 0D", "{gxbool}"}}},
