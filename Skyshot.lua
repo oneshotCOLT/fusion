@@ -6655,6 +6655,22 @@ function cwing()
     setvalue(so+cw3,16,1.9082872313447297e-6)
 end
 
+function gwing()
+	setvalue(so+gw1,16,9.45302004e-21)
+	setvalue(so+gw2,16,-9.01087389e12)
+	gg.toast("Give Winged Light to Statues")
+	setvalue(so+gw1,16,9.45302004e-21)
+	setvalue(so+gw2,16,-9.01087389e12)
+	gg.sleep(100)
+	setvalue(so+gw1,16,8.5629737e-21)
+	setvalue(so+gw2,16,gw2_v)
+	gg.sleep(10)
+	setvalue(so+gw1,16,8.5629737e-21)
+	setvalue(so+gw2,16,gw2_v)
+end
+	
+function wingl()
+end
 
 function wings2()
     cw1 = 0xC6376C
